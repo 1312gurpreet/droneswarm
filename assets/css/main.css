@@ -3211,6 +3211,50 @@ input, select, textarea {
 			width: 75em;
 		}
 
+		.left-1{
+    		height: 800px;
+    		line-height: 40px;
+    		text-align: justify;
+		}
+		.right-1 {
+    		height: 800px;
+    		line-height: 40px;
+    		text-align: left;
+  		}
+
+  		.left-1 {
+    		float: left;
+			font-size: 0.9em;
+    		width: 600px; /* 固定200px */
+  		}
+
+  		.right-1 {
+    		margin-left: 670px; /* 左边宽度再加10px空白 */
+			font-size: 1.0em;
+    		/*background-color: black;*/
+    		color: white;
+  		}
+
+		.left-2,
+		.right-2{
+			height: 550px;
+    		line-height: 40px;
+    		text-align: justify;
+		}
+
+		.left-2{
+			float: left;
+			font-size: 0.9em;
+			width: 500px;
+			color: white;
+		}
+
+		.right-2{
+			margin-left: 550px;
+			font-size: 0.8em;
+			color: white;
+		}
+
 			@media screen and (max-width: 1680px) {
 
 				.wrapper > .inner {

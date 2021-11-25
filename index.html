@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <html>
 	<head>
 		<title>2021 CUSP Capstone Project - NYU</title>
@@ -14,11 +15,11 @@
 				<div class="inner">
 					<nav>
 						<ul>
-							<li><a href="#abstract">Abstract</a></li>
 							<li><a href="#intro">Introduction</a></li>
-							<li><a href="#data">Data</a></li>
-							<!-- <li><a href="#methods">Methodology</a></li>
-							<li><a href="#results">Results</a></li> -->
+							<li><a href="#abstract">Abstract</a></li>
+							<!-- <li><a href="#data">Data</a></li> -->
+							<li><a href="#methods">Methodology</a></li>
+							<li><a href="#results">Results</a></li>
 							<li><a href="#team">Team</a></li>
 							<li><a href="#contact">Contact Us</a></li>
 						</ul>
@@ -30,15 +31,23 @@
 			<div id="wrapper">
 
 				<!-- Intro -->
-					<section id="abstract" class="wrapper style1 fullscreen fade-up">
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>Developing Autonomous Drone Swarms with Multi-Agent Reinforcement Learning for Scalable Post-Disaster Damage Assessment</h1>
 							<h3>2021 CUSP Capstone Project - NYU</h3>
-							<!-- <br>
+							<br/>
 							<div style="position: relative;width: 100%;padding-bottom: 56.25%;height: 0;">
-								<iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" src="https://drive.google.com/file/d/1HBoXIWaxRr17yL9_gFZaE91bjWF3Pk1e/preview" width="720" height="405" allow="autoplay"></iframe>
+								<iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" src="https://drive.google.com/file/d/1HBoXIWaxRr17yL9_gFZaE91bjWF3Pk1e" width="720" height="405" allow="autoplay"></iframe>
 							</div>
-							<br> -->
+							<br/>
+							<p style="font-size: 1em;">An example of 3D simulation. <a href="https://github.com/CUSP-NYU/autonomous-drone-swarm">https://github.com/CUSP-NYU/autonomous-drone-swarm</a></p>
+						</div>
+					</section>
+
+				<!-- Abstract -->
+					<section id="abstract" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h2>Abstract</h2>
 							<p style="text-align:justify">In recent years, drones have been used for supporting post-disaster damage assessment of buildings, roads, and infrastructure. Given that human resources are limited post-disaster, the development of autonomous drone swarms rather than a single drone can enable a further rapid and thorough assessment. Multi-Agent Reinforcement Learning is a promising approach because it can adapt to dynamic environments and relax computational complexity for optimization. 
 							</p>
 							
@@ -50,58 +59,67 @@
 						</div>
 					</section>
 
-				<!-- One -->
-					<section id="intro" class="wrapper style2 spotlights">
+				<!-- Methodology -->
+				<section id="methods" class="wrapper style2 spotlights">
 						<section>
 							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Problem Definition</h2>
-									
-									<p>Disaster management has long been one of the central themes to make cities resilient and livable. It is categorized into three activities in a timeline: pre-disaster, during a disaster, and post-disaster. Among them, damage assessment of buildings, roads, and...</p>
-									<ul class="actions">
+									<h2>Environment</h2>
+									<p>We discretize the 2-dimensional mission environment (disaster area) into a grid consisting of 𝑚 × 𝑚 square cells. The length of the square cell side is sufficiently larger than the size of the drone, and two or more drones can occupy a single cell4. The cell visited by at least one drone is considered mapped.</p>
+									<!-- <ul class="actions">
 										<li><a href="problem-def.html" class="button">Learn more</a></li>
-									</ul>
+									</ul> -->
 								</div>
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									
-									<h2> Literature Review</h2>
-									<p>Alongside customary space-based and airborne platforms, small aerial drones equipped with photodetector arrays (e.g., cameras) and other sensors are among more recently adopted monitoring and surveillance platforms for emergency response...</p>
-									<ul class="actions">
+									<h2>Sequence Decision-Making</h2>
+									<p>Each time step, 𝑛 drones take action sequentially; the preceding drone mapping results are reflected in the status matrix 𝑀 before the following one decides its action.</p>
+
+									<p>Therefore, the following drone could indirectly and partially observe the preceding ones’ behaviors. The order of drones taking action is randomly set in each time step.</p>
+
+									<p>On the right side, we can see:</p>
+
+									<p>Example of the sequential decision-making process of two drones. The order of drones taking action is randomly set; drone 1 moves first at time 𝑡 and drone 2 moves first at time 𝑡 + 1.</p>
+									<!-- <ul class="actions">
 										<li><a href="lit-review.html" class="button">Learn more</a></li>
-									</ul>
+									</ul> -->
 								</div>
 							</div>
+							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 						</section>
-<!-- 						<section>
+						<section>
 							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Ultricies aliquam</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-									<ul class="actions">
+									<h2>State Space and Action Space </h2>
+									<p>We examine two state spaces to deal with possible disaster areas and scenarios. First, we directly use drones’ location ℎ!(#) as a state. In another one, we use drones’ observations within their Field of View (FOV) as a state.</p>
+
+									<p>On the left side, we can see:</p>
+
+									<p>In real applications, observation is typically images taken by a camera or sensor installed on a drone. In this research, we simplify the observation to the mapping status of the four neighboring cells, 𝑜!(#) ∈ 𝑅4, referring to the mapping status matrix 𝑀.</p>
+
+									<p>When the FOV overlaps the outside of the environment, the corresponding value is set to −1.</p>
+
+									<!-- <ul class="actions">
 										<li><a href="generic.html" class="button">Learn more</a></li>
-									</ul>
+									</ul> -->
 								</div>
 							</div>
-						</section> -->
+						</section>
 					</section>
-
-				<!-- Two -->
-					<section id="data" class="wrapper style3 fade-up">
+					<!-- <section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>What we did?</h2>
-<!-- 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-							<div class="features"> -->
+							<h2>What we do</h2>
+							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="features">
 								<section>
 									<span class="icon solid major fa-code"></span>
-									<h3>Reinforcement Learning</h3>
-									<p>Unlike supervised learning and unsupervised learning, reinforcement learning does not need labeled input/output to train a model. Therefore, we have not used any explicit datasets.</p>
+									<h3>Lorem ipsum amet</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-lock"></span>
@@ -134,64 +152,12 @@
 							</ul>
 						</div>
 					</section>
-				
-				<section id="team" class="wrapper style3 fade-up">
+ -->
+				<!-- Contact -->
+					<section id="contact" class="wrapper style1 fade-up">
 						<div class="inner">
-							<div class="left-2">
-								<h2>Team:</h2>
-								<strong style="font-size:1.2em">Daisuke Nakanishi</strong>
-									<ul class="icons">
-										<li><a href="http://www.linkedin.com/in/daisuke-nakanishi-685761202/" class="icon brands fa-linkedin-in" style="font-size:30px;color: #ffffff;"><span class="label">Linkedin</span></a></li>
-										<li style="padding-left: 0.1em"><a href="https://github.com/mnmldb" class="icon brands fa-github" style="font-size:32px;color: #ffffff;"><span class="label">Github</span></a></li>
-<!-- 										<li style="padding-left: 0.2em"><a href="https://medium.com/" class="icon brands fa-medium" style="font-size:32px;color: #ffffff;"><span class="label">Medium</span></a></li> -->
-									</ul>
-
-								<strong style="font-size:1.2em">Gurpreet Singh</strong>
-									<ul class="icons">
-										<li><a href="https://www.linkedin.com/in/gurpr33tsingh/" class="icon brands fa-linkedin-in" style="font-size:30px;color: #ffffff;"><span class="label">Linkedin</span></a></li>
-										<li style="padding-left: 0.1em"><a href="https://github.com/" class="icon brands fa-github" style="font-size:32px;color: #ffffff;"><span class="label">Github</span></a></li>
-<!--  										<li style="padding-left: 0.2em"><a href="https://medium.com/" class="icon brands fa-medium" style="font-size:32px;color: #ffffff;"><span class="label">Medium</span></a></li> -->
-									</ul>
-
-								<strong style="font-size:1.2em">Kshitij Chandna</strong>
-									<ul class="icons">
-										<li><a href="https://www.linkedin.com/in/" class="icon brands fa-linkedin-in" style="font-size:30px;color: #ffffff;"><span class="label">Linkedin</span></a></li>
-										<li style="padding-left: 0.1em"><a href="https://github.com/" class="icon brands fa-github" style="font-size:32px;color: #ffffff;"><span class="label">Github</span></a></li>
-<!-- 										<li style="padding-left: 0.2em"><a href="https://medium.com/" class="icon brands fa-medium" style="font-size:32px;color: #ffffff;"><span class="label">Medium</span></a></li> -->
-									</ul>
-
-							</div>
-							<div class="right-2">
-								<h2>Advisors:</h2>
-								<strong style="font-size:1.2em">Dr. David K A Mordecai, Professor</strong>
-								<br />
-								<strong style="font-size:1.2em">Dr. Giuseppe Loianno, Professor</strong>
-								<br />
-
-								<br />
-								<ul class="logotypes">
-									<a href="https://wp.nyu.edu/riskeconlab/"><img style="margin-right: 30px;margin-bottom: 10px;width: auto;max-width: 100px;max-height: 50px;" src="images/icon002.png" alt=""></a>
-									<a href="https://cusp.nyu.edu/"><img style="margin-right: 30px;margin-bottom: 10px;width: auto;max-width: 100px;max-height: 50px;" src="images/icon003.jpg" alt=""></a>
-									<a href="https://wp.nyu.edu/arpl/"><img style="margin-right: 30px;margin-bottom: 10px;width: auto;max-width: 100px;max-height: 50px;" src="images/icon004.jpg" alt=""></a>
-								</ul>
-								<br />
-								<article>Support: RiskEcon® Lab for Decision Metrics @ Courant NYU</article>
-								<article style="padding-left:4.0em">Agile Robotics and Perception Lab (ARPL) @ Tandon NYU</article>
-
-							</div>
-							<br />
-<!-- 							<p style="font-size:0.9em">We would like to sincerely thank Joseph Bullock (AI Researcher at UNGP and PhD Researcher at Durham University), Dr. Debra Laefer (New York University) and Dr. Ufuk Hancilar (Bogazici University) for their helpful feedback and suggestions to this project, and thank our project advisors for their guidance throughout the project. Any remaining errors are our own.</p> -->
-
-
-						</div>
-					</section>
-
-
-				<!-- Three -->
-					<section id="contact" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>Get more information</h2>
-<!-- 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p> -->
+							<h2>Get more information:</h2>
+							<!-- <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p> -->
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
@@ -222,15 +188,15 @@
 											Brooklyn, NY 11201<br />
 											USA</span>
 										</li>
-										<li>
+										<!-- <li>
 											<h3>Email</h3>
 											<a href="#">1312.gurpreet@gmail.com</a>
 										</li>
-<!-- 										<li>
+										<li>
 											<h3>Phone</h3>
 											<span>(000) 000-0000</span>
-										</li> -->
-<!-- 										<li>
+										</li>
+										<li>
 											<h3>Social</h3>
 											<ul class="icons">
 												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -239,8 +205,8 @@
 												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 											</ul>
-										</li> -->
-									</ul>
+										</li>
+ -->									</ul>
 								</section>
 							</div>
 						</div>
@@ -248,7 +214,6 @@
 
 			</div>
 
-		<!-- Footer -->
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
@@ -265,6 +230,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>

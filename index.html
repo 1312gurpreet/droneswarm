@@ -32,19 +32,16 @@
 				<!-- Intro -->
 					<section id="abstract" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h1>Bridging Graph Neural Network and Reinforcement Learning for Autonomous Drone Swarm Exploration</h1>
+							<h1>Developing Autonomous Drone Swarms with Multi-Agent Reinforcement Learning for Scalable Post-Disaster Damage Assessment</h1>
 							<h3>2021 CUSP Capstone Project - NYU</h3>
 							
-							<p style="text-align:justify">Autonomous drone swarms can play a critical role in supporting rescue teams in post-disaster by detecting victims, assessing the damage of buildings, and monitoring terrains, especially for inaccessible or dangerous environments for humans. The critical requirement for this application is decentralized control without relying on the Global Positioning System (GPS).
+							<p style="text-align:justify">In recent years, drones have been used for supporting post-disaster damage assessment of buildings, roads, and infrastructure. Given that human resources are limited post-disaster, the development of autonomous drone swarms rather than a single drone can enable a further rapid and thorough assessment. Multi-Agent Reinforcement Learning is a promising approach because it can adapt to dynamic environments and relax computational complexity for optimization. 
 							</p>
 							
-							<p style="text-align:justify">We hypothesize that graph neural network (GNN) as part of the reinforcement learning (RL) policy network would outperform the existing RL approaches in efficiency and scalability. GNN enables us to model drones’ information exchange with nearby ones.
-								Thus, drones can optimize their actions based on richer information to pursue a common global goal. This research focuses on the mapping task; drones try to visit points of interest within the disaster area as fast and thoroughly as possible.
+							<p style="text-align:justify">This research project applies Multi-Agent Q-learning to autonomous navigation for mapping and multi-objective drone swarm exploration of a disaster area in terms of tradeoffs between coverage and scalability. We compare two different state spaces by assessing coverage of the environment within the given limited time.
 							</p>
 							
-							<p style="text-align:justify">The objectives of this research are:
-								1) to define a baseline performance with the multi-agent Q-learning algorithm that GNN ultimately should outperform
-								2) to formulate a concrete problem statement for the GNN algorithm for future work.
+							<p style="text-align:justify">We find that using drones’ observations of the mapping status within their Field of View as a state is better than using their positions in terms of coverage and scalability. Also, we empirically specify parametric thresholds for performance of a multi-objective RL algorithm as a point of reference for future work incorporating deep learning approaches, e.g., Graph Neural Networks (GNNs).
 							</p>
 						</div>
 					</section>
@@ -94,13 +91,13 @@
 				<!-- Two -->
 					<section id="data" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>What we do</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-							<div class="features">
+							<h2>What we did?</h2>
+<!-- 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="features"> -->
 								<section>
 									<span class="icon solid major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Reinforcement Learning</h3>
+									<p>Unlike supervised learning and unsupervised learning, reinforcement learning does not need labeled input/output to train a model. Therefore, we have not used any explicit datasets.</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-lock"></span>

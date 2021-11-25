@@ -17,9 +17,9 @@
 						<ul>
 							<li><a href="#intro">Introduction</a></li>
 							<li><a href="#abstract">Abstract</a></li>
-							<!-- <li><a href="#data">Data</a></li> -->
 							<li><a href="#methods">Methodology</a></li>
 							<li><a href="#results">Results</a></li>
+							<li><a href="#conclusion">Conclusion</a></li>
 							<li><a href="#team">Team</a></li>
 							<li><a href="#contact">Contact Us</a></li>
 						</ul>
@@ -60,12 +60,22 @@
 					</section>
 
 				<!-- Methodology -->
-				<section id="methods" class="wrapper style2 spotlights">
+					<section id="methods" class="wrapper style2 spotlights">
+						<section>
+							<div class="content" style="width:100%;">
+								<div class="inner">
+								<h2>Methodology</h2>
+								<br/>
+								<h3>Multi-Agent Q-learning</h3>
+								<p>We use Q-learning to define the baseline performance of the mapping task. In a multi-drone scenario, each drone has an independent action-value function 𝑄 and takes action without explicitly sharing its state with each other.</p>
+								</div>								
+							</div>
+						</section>
 						<section>
 							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Environment</h2>
+									<h3>Environment</h3>
 									<p>We discretize the 2-dimensional mission environment (disaster area) into a grid consisting of 𝑚 × 𝑚 square cells. The length of the square cell side is sufficiently larger than the size of the drone, and two or more drones can occupy a single cell4. The cell visited by at least one drone is considered mapped.</p>
 									<!-- <ul class="actions">
 										<li><a href="problem-def.html" class="button">Learn more</a></li>
@@ -74,14 +84,14 @@
 							</div>
 						</section>
 						<section>
-							<div class="content">
+							<div class="content" style="width:100%;">
 								<div class="inner">
-									<h2>Sequence Decision-Making</h2>
+									<h3>Sequence Decision-Making</h3>
 									<p>Each time step, 𝑛 drones take action sequentially; the preceding drone mapping results are reflected in the status matrix 𝑀 before the following one decides its action.</p>
 
 									<p>Therefore, the following drone could indirectly and partially observe the preceding ones’ behaviors. The order of drones taking action is randomly set in each time step.</p>
 
-									<p>On the right side, we can see:</p>
+									<p><img src="images/pic010.jpg" alt="" style="width: 100%; height: auto;"></p>
 
 									<p>Example of the sequential decision-making process of two drones. The order of drones taking action is randomly set; drone 1 moves first at time 𝑡 and drone 2 moves first at time 𝑡 + 1.</p>
 									<!-- <ul class="actions">
@@ -89,16 +99,14 @@
 									</ul> -->
 								</div>
 							</div>
-							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
-							<div class="content">
+							<div class="content"  style="width:100%;">
 								<div class="inner">
-									<h2>State Space and Action Space </h2>
+									<h3>State Space and Action Space </h3>
 									<p>We examine two state spaces to deal with possible disaster areas and scenarios. First, we directly use drones’ location ℎ!(#) as a state. In another one, we use drones’ observations within their Field of View (FOV) as a state.</p>
 
-									<p>On the left side, we can see:</p>
+									<p><img src="images/pic011.jpg" alt="" style="width: 100%; height: auto;"></p>
 
 									<p>In real applications, observation is typically images taken by a camera or sensor installed on a drone. In this research, we simplify the observation to the mapping status of the four neighboring cells, 𝑜!(#) ∈ 𝑅4, referring to the mapping status matrix 𝑀.</p>
 
@@ -153,6 +161,74 @@
 						</div>
 					</section>
  -->
+ 				<!-- Conclusion -->
+					<section id="conclusion" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h2>Conclusion</h2>
+							<p style="text-align:justify">In this research, we modeled the deployment of autonomous drone swarms to post-disaster damage assessment as the mapping task. We compared two different state spaces and found that using drones’ observations of the mapping status within their FOV as a state is a better solution in terms of coverage and scalability. This result implies that we can develop a decentralized control version; each drone takes action only consuming a local observation without communicating with a central controller. 
+							</p>
+							
+							<p style="text-align:justify">In damage assessment, a decentralized control has two advantages. First, a centralized control system is challenging to scale up to a large number of drones because of its fragility to a single point of failures and communication outages. Second, drones can regulate themselves without Global Positioning System (GPS). 
+							</p>
+
+							<p style="text-align:justify">In such cases where buildings surround the disaster area (e.g., downtown) or we need to inspect indoors (e.g., subway stations), a GPS signal from satellites may become too weak for drones to navigate the environment accurately. Therefore, the decentralized control using drones’ local observation as a state is a promising solution for scalable damage assessment.
+							</p>
+							
+							<p style="text-align:justify">We observed that the Multi-Agent Independent Q-learning had the limitation to reduce redundant actions. In damage assessment, redundancy may contribute to increasing the confidence of damage information in a particular spot. However, especially for a primary damage assessment immediately after a disaster, speed to map a disaster area thoroughly is critical. We hypothesize that incorporating GNNs as an RL policy network could minimize redundancy and achieve decentralized control.
+							</p>
+
+							<p style="text-align:justify">We can evaluate its performance by how efficiently the drones map the environment (e.g., time steps to reach 95% coverage). The performance of our Multi-Agent Independent Q-learning algorithm will be a baseline for such future work. Also, we assume Deep Q-Networks could be another baseline.
+							</p>
+						</div>
+					</section>
+
+ 				<!-- Team -->
+ 					<section id="team" class="wrapper style3 fade-up">
+						<div class="inner">
+							<div class="left-2">
+								<h2>Team:</h2>
+								<strong style="font-size:1.2em">Daisuke Nakanishi</strong>
+									<ul class="icons">
+										<li><a href="http://www.linkedin.com/in/daisuke-nakanishi-685761202/" class="icon brands fa-linkedin-in" style="font-size:30px;color: #ffffff;"><span class="label">Linkedin</span></a></li>
+										<li style="padding-left: 0.1em"><a href="https://github.com/mnmldb" class="icon brands fa-github" style="font-size:32px;color: #ffffff;"><span class="label">Github</span></a></li>
+									</ul>
+
+								<strong style="font-size:1.2em">Gurpreet Singh</strong>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/gurpr33tsingh/" class="icon brands fa-linkedin-in" style="font-size:30px;color: #ffffff;"><span class="label">Linkedin</span></a></li>
+										<li style="padding-left: 0.1em"><a href="https://github.com/" class="icon brands fa-github" style="font-size:32px;color: #ffffff;"><span class="label">Github</span></a></li>
+									</ul>
+
+								<strong style="font-size:1.2em">Kshitij Chandna</strong>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/" class="icon brands fa-linkedin-in" style="font-size:30px;color: #ffffff;"><span class="label">Linkedin</span></a></li>
+										<li style="padding-left: 0.1em"><a href="https://github.com/" class="icon brands fa-github" style="font-size:32px;color: #ffffff;"><span class="label">Github</span></a></li>
+									</ul>
+
+							</div>
+							<div class="right-2">
+								<h2>Advisors:</h2>
+								<strong style="font-size:1.2em">Dr. David K A Mordecai, Professor</strong>
+								<br />
+								<strong style="font-size:1.2em">Dr. Giuseppe Loianno, Professor</strong>
+								<br />
+
+								<br />
+								<ul class="logotypes">
+									<a href="https://wp.nyu.edu/riskeconlab/"><img style="margin-right: 30px;margin-bottom: 10px;width: auto;max-width: 100px;max-height: 50px;" src="images/icon002.png" alt=""></a>
+									<a href="https://cusp.nyu.edu/"><img style="margin-right: 30px;margin-bottom: 10px;width: auto;max-width: 100px;max-height: 50px;" src="images/icon003.jpg" alt=""></a>
+									<a href="https://wp.nyu.edu/arpl/"><img style="margin-right: 30px;margin-bottom: 10px;width: auto;max-width: 100px;max-height: 50px;" src="images/icon004.jpg" alt=""></a>
+								</ul>
+								<br />
+								<article>Support: RiskEcon® Lab for Decision Metrics @ Courant NYU</article>
+								<article style="padding-left:4.0em">Agile Robotics and Perception Lab (ARPL) @ Tandon NYU</article>
+
+							</div>
+							<br />
+							<p style="font-size:0.9em">We would like to sincerely thank Dr. David K.A. Mordecai at RiskEcon® Lab @ Courant Institute of Mathematical Sciences NYU and Dr. Giuseppe Loianno at Agile Robotics and Perception Lab @ NYU Tandon School of Engineering for supervising the research. We also thank Rohith Gandhi Ganesan at Amazon.com, Inc. for helpful comments and assistance.</p>
+						</div>
+					</section>
+
 				<!-- Contact -->
 					<section id="contact" class="wrapper style1 fade-up">
 						<div class="inner">

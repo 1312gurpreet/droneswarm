@@ -47,7 +47,7 @@
 				<!-- Abstract -->
 					<section id="abstract" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h2>Abstract</h2>
+							<h2 style="text-align: center;">ABSTRACT</h2>
 							<p style="text-align:justify">In recent years, drones have been used for supporting post-disaster damage assessment of buildings, roads, and infrastructure. Given that human resources are limited post-disaster, the development of autonomous drone swarms rather than a single drone can enable a further rapid and thorough assessment. Multi-Agent Reinforcement Learning is a promising approach because it can adapt to dynamic environments and relax computational complexity for optimization. 
 							</p>
 							
@@ -64,7 +64,7 @@
 						<section>
 							<div class="content" style="width:100%;">
 								<div class="inner">
-								<h2>Methodology</h2>
+								<h2 style="text-align: center;">METHODOLOGY</h2>
 								<br/>
 								<h3>Multi-Agent Q-learning</h3>
 								<p>We use Q-learning to define the baseline performance of the mapping task. In a multi-drone scenario, each drone has an independent action-value function 𝑄 and takes action without explicitly sharing its state with each other.</p>
@@ -119,52 +119,85 @@
 							</div>
 						</section>
 					</section>
-					<!-- <section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>What we do</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-							<div class="features">
-								<section>
-									<span class="icon solid major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-lock"></span>
-									<h3>Aliquam sed nullam</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-cog"></span>
-									<h3>Sed erat ullam corper</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-desktop"></span>
-									<h3>Veroeros quis lorem</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-link"></span>
-									<h3>Urna quis bibendum</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon major fa-gem"></span>
-									<h3>Aliquam urna dapibus</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
+
+				<!-- Results -->
+					<section id="results" class="wrapper spotlights" style="background-color: #274B6E;">
+						<section>
+							<div class="content" style="width:100%;">
+								<div class="inner">
+								<h2 style="text-align: center;">RESULTS</h2>
+								<br/>
+								<p><img src="images/pic012.jpg" alt="" style="width: 100%; height: auto;"></p>
+								</div>								
 							</div>
-							<ul class="actions">
-								<li><a href="generic.html" class="button">Learn more</a></li>
-							</ul>
-						</div>
+						</section>
+						<section>
+							<div class="content" style="width:100%;">
+								<div class="inner">
+									<h2>01</h2>
+									<h3>Convergence</h3>
+									<p style="text-align:justify">First, we verified convergence to the optimal action-value function 𝑞∗ in each simulation to see if our setting works in the RL framework. After convergence is achieved, greedy actions with respect to the maximum of the action-value in all states should be stationary.</p>
+
+									<p><img src="images/pic013.jpg" alt="" style="width: 100%; height: auto;"></p>
+
+									<p style="text-align:justify">We confirmed such convergence except for the 2-drone simulation with random initial positions and the positions as a state. It is because the randomness of initial positions made it difficult for a drone to estimate another one's policy, and the mapping status of the visited cell’s neighbors was not always the same.</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content" style="width:100%;">
+								<div class="inner">
+									<h2>02</h2>
+									<h3>Coverage</h3>
+									<p style="text-align:justify">Next, we compared coverage of the grid when we followed each simulation’s greedy policy after convergence to measure how good each algorithm was. We observed that the coverages of using the local mapping status as a state outperformed the positions regardless of the number of drones and their initial positions in the training.</p>
+
+									<div style="text-align: center;">
+										<p style="float:left;"><img src="images/pic014.jpg" alt="" style="max-width: 100%; height: auto;"></p>
+										<p style="max-width: 216px; width: 100%; display: inline-block;">
+											<img src="images/pic015.gif" alt="" style="width: 100%; height: auto;">
+											<img src="images/pic016.gif" alt="" style="width: 100%; height: auto;">
+										</p>	
+									</div>
+
+									<p style="text-align:justify; clear: both;">This result could come from the direct relationship between state and immediate reward; drones can predict the immediate reward of each action by directly observing the mapping status. Thus, greedy policies were less prone to converge to local optima.</p>							
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content"  style="width:100%;">
+								<div class="inner">
+									<h2>03</h2>
+									<h3>Scalability</h3>
+									<p style="text-align:justify">In addition to coverage, we confirmed that another benefit of using the local mapping status as a state is scalability. Its complexity, the number of state-action pairs, with regards to the size of the grid 𝑚 is constant, 𝑂(1).</p>
+
+									<p style="text-align:justify">Thus, we can train the algorithms in smaller grids and deploy them to larger grids. On the other hand, the complexity of the algorithms using positions as a state is 𝑂(𝑚**2) and they need separate training when the grid size is different.</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="content"  style="width:100%;">
+								<div class="inner">
+									<h2>04</h2>
+									<h3>Challenges</h3>
+									<p style="text-align:justify">The challenge of the algorithms using the local mapping status as a state was the chance that a drone would take redundant actions. The below figure shows the trajectories starting from (0, 0) and (9, 9) when we followed the 2- drone simulation’s greedy policy trained with random initial positions. Although the coverage got to 100%, drone 2 ended up with the infinite loop between (9,0) and (9,1), which was a redundant behavior.</p>
+
+									<p style="text-align:justify">Thus, the contribution of drones was skewed and the time steps to complete mapping was far from the minimum. The redundancy could increase in proportion to the number of drones used as long as they are independent, which means that the scalability is limited.</p>
+									
+									<div style="text-align: center;">
+										<p style="float:left;"><img src="images/pic017.jpg" alt="" style="max-width: 100%; height: auto;"></p>
+										<p style="max-width: 216px; width: 100%; display: inline-block;">
+											<img src="images/pic018.gif" alt="" style="width: 100%; height: auto;">
+										</p>	
+									</div>
+								</div>
+							</div>
+						</section>
 					</section>
- -->
+
  				<!-- Conclusion -->
 					<section id="conclusion" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h2>Conclusion</h2>
+							<h2 style="text-align: center;">CONCLUSION</h2>
 							<p style="text-align:justify">In this research, we modeled the deployment of autonomous drone swarms to post-disaster damage assessment as the mapping task. We compared two different state spaces and found that using drones’ observations of the mapping status within their FOV as a state is a better solution in terms of coverage and scalability. This result implies that we can develop a decentralized control version; each drone takes action only consuming a local observation without communicating with a central controller. 
 							</p>
 							
